@@ -20,6 +20,6 @@
     },
     "require": {
         "drupal/migrate_tools": "^8",
-        "drupal/migrate_plus": "^8",
+        "drupal/migrate_plus": "^8"
     }
 }
