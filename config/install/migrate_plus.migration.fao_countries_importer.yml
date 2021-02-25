@@ -1,0 +1,72 @@
+langcode: en
+status: true
+dependencies: {  }
+id: fao_countries_importer
+migration_group: fao_countries
+label: 'Sync FAO Countries from JSON webservice (English)'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  urls:
+    - 'https://data.apps.fao.org/catalog/dataset/1712bf04-a530-4d55-bb66-54949213985f/resource/b0c1d224-23ea-425d-b994-e15f76feb26b/download/m49-countries.json'
+  data_parser_plugin: json
+
+  item_selector:
+  fields:
+    -
+      name: m49
+      label: M49
+      selector: m49
+    -
+      name: iso3
+      label: ISO3
+      selector: ISO3
+    -
+      name: country_name_en
+      label: 'English Country name'
+      selector: country_name_en
+    -
+      name: country_name_es
+      label: 'Spanish Country name'
+      selector: country_name_es
+    -
+      name: country_name_ar
+      label: 'Arabic Country name'
+      selector: country_name_ar
+    -
+      name: country_name_ru
+      label: 'Russian Country name'
+      selector: country_name_ru
+    -
+      name: country_name_fr
+      label: 'French Country name'
+      selector: country_name_fr
+    -
+      name: country_name_zh
+      label: 'Chinese Country name'
+      selector: country_name_zh
+
+  ids:
+    m49:
+      type: string
+
+process:
+  langcode:
+    -
+      plugin: default_value
+      default_value: 'en'
+  vid:
+    -
+      plugin: default_value
+      default_value: 'country'
+  name: country_name_en
+  field_m49: m49
+  field_iso3: iso3
+  status:
+    -
+      plugin: default_value
+      default_value: 1
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: country
+

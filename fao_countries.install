@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the AIMS D7 Migration module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function fao_countries_install() {
+  \Drupal::messenger()->addStatus(__FUNCTION__);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function fao_countries_uninstall() {
+  \Drupal::messenger()->addStatus(__FUNCTION__);
+
+  db_query("DELETE FROM {config} WHERE name LIKE 'migrate_plus.migration.fao_countries%'");
+  db_query("DELETE FROM {config} WHERE name LIKE 'migrate_plus.migration_group.fao_countries%'");
+  drupal_flush_all_caches();
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function aims_migration_requirements($phase) {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    $value = mt_rand(0, 100);
+    $requirements['aims_migration_status'] = [
+      'title' => t('AIMS D7 Migration status'),
+      'value' => t('AIMS D7 Migration value: @value', ['@value' => $value]),
+      'severity' => $value > 50 ? REQUIREMENT_INFO : REQUIREMENT_WARNING,
+    ];
+  }
+
+  return $requirements;
+}

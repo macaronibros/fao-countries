@@ -1,0 +1,25 @@
+{
+    "name": "macaronibros/fao_countries",
+    "description": "Macaroni Module to Sync Country Drupal Vocabulary with FAO Webservice",
+    "type": "drupal-custom-module",
+    "homepage": "https://github.com/macaronibros/fao-countries",
+    "authors": [
+        {
+            "name": "Macaronibros",
+            "homepage": "https://www.macaronibros.com",
+            "role": "Maintainer"
+        }
+    ],
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "stable",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
+    "require": {
+        "drupal/migrate_tools": "^8",
+        "drupal/migrate_plus": "^8",
+    }
+}
